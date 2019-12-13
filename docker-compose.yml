@@ -1,0 +1,8 @@
+version: "3"
+services:
+  nginx:
+    container_name: nginx-spa
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: nginx-spa:latest
