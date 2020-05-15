@@ -45,7 +45,8 @@ spec:
                     sh "docker login --username='$user' --password='$password'"
                 }
                 
-                sh "docker push ikmuge/nginx-spa:${BUILD_NUMBER} ikmuge/nginx-spa:latest"
+                sh "docker push ikmuge/nginx-spa:${BUILD_NUMBER}"
+                sh "docker push ikmuge/nginx-spa:latest"
             }
         }
     }
