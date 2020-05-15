@@ -23,9 +23,9 @@ spec:
     }
   }
   stages {
-    stage("clone repository"){
-        timeout(time: 3, unit: 'MINUTES') {
-            checkout scm
+    stage("checkout code"){
+        steps {
+          checkout scm
         }
     }
 
