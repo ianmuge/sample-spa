@@ -32,13 +32,22 @@ spec:
     stage('Build Docker image') {
       steps {
         container('docker') {
-            sh "ls"
             sh "docker info"
             sh "docker build -t ikmuge/nginx-spa:${BUILD_NUMBER} ."
             sh "docker tag ikmuge/nginx-spa:${BUILD_NUMBER} ikmuge/nginx-spa:latest"
-            sh "docker images"          
         }
       }
+    }
+    stage("Push Image"){
+        steps{
+            container("docker"){
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credential', passwordVariable: 'password', usernameVariable: 'user')]) {
+                    sh "docker login --username='$user' --password='$password'"
+                }
+                
+                sh "docker push ikmuge/nginx-spa:${BUILD_NUMBER} ikmuge/nginx-spa:latest"
+            }
+        }
     }
   }
 }
