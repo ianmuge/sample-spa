@@ -23,12 +23,6 @@ spec:
     }
   }
   stages {
-    stage("checkout code"){
-        steps {
-          checkout scm
-        }
-    }
-
     stage('Build Docker image') {
       steps {
         container('docker') {
